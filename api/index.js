@@ -1,8 +1,8 @@
 import express from "express";
 import mongoose from "mongoose";
-import dotenv from 'dotenv';
-import userRoutes from './routes/user.routes.js'
-import signupRoute from './routes/singup.route.js'
+import dotenv from "dotenv";
+import userRoutes from "./routes/user.routes.js";
+import signupRoute from "./routes/singup.route.js";
 dotenv.config();
 mongoose
   .connect(process.env.MONGO)
@@ -22,6 +22,15 @@ app.listen(port, () => {
   console.log("server is running on port: " + port);
 });
 
-app.use("/api/user",userRoutes);
-app.use("/api/auth",signupRoute);
+app.use("/api/user", userRoutes);
+app.use("/api/auth", signupRoute);
 
+app.use((err, req, res, next) => {
+  const statusCode = err.statusCode || 500;
+  const message = err.message || "Internal Serever Error";
+  return res.status(statusCode).json({
+    sucess: false,
+    message,
+    statusCode,
+  });
+});
