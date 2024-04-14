@@ -4,7 +4,6 @@ import dotenv from 'dotenv';
 import userRoutes from './routes/user.routes.js'
 import signupRoute from './routes/singup.route.js'
 dotenv.config();
-console.log(process.env.MONGO)
 mongoose
   .connect(process.env.MONGO)
   .then(() => {
