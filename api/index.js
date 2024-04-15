@@ -2,7 +2,7 @@ import express from "express";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
 import userRoutes from "./routes/user.routes.js";
-import signupRoute from "./routes/singup.route.js";
+import signupRoute from "./routes/auth.routes.js";
 dotenv.config();
 mongoose
   .connect(process.env.MONGO)
