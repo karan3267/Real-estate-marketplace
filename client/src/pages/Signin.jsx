@@ -1,15 +1,20 @@
 import { useState } from "react";
-import { Link,useNavigate} from "react-router-dom";
-
+import { Link, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  signInStart,
+  signInFailure,
+  signInSuccess,
+} from "../redux/user/userSlice";
 export default function SignUp() {
   const [formData, setFormData] = useState({});
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState(null);
-  const navigate=useNavigate();
+  const { loading, error } = useSelector((state) => state.user);
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      setIsLoading(true);
+      dispatch(signInStart());
       const res = await fetch("/api/auth/signin", {
         method: "POST",
         headers: {
@@ -19,16 +24,13 @@ export default function SignUp() {
       });
       const data = await res.json();
       if (data.success === false) {
-        setIsLoading(false);
-        setError(data.message);
+        dispatch(signInFailure(data.message));
         return;
       }
-      setError(null);
-      setIsLoading(false);
-      navigate("/")
+      dispatch(signInSuccess(data));
+      navigate("/");
     } catch (error) {
-      setIsLoading(false);
-      setError(error.message);
+      dispatch(signInFailure(error.message));
     }
   };
   const handleChange = (e) => {
@@ -56,7 +58,7 @@ export default function SignUp() {
           onChange={handleChange}
         />
         <button className="uppercase bg-slate-700 text-white rounded-lg hover:opacity-90 p-3">
-          {isLoading ? "Loading..." : "Sign in"}
+          {loading ? "Loading..." : "Sign in"}
         </button>
       </form>
       <div className="my-5">
