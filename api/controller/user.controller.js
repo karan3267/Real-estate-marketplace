@@ -6,7 +6,7 @@ export const test = (req, res) => {
   res.send("hello from user router");
 };
 
-export const updateUser = async (req, res,next) => {
+export const updateUser = async (req, res, next) => {
   if (req.user.id !== req.params.id)
     return next(errorHandler(401, "You cannot update other accounts"));
   try {
@@ -27,6 +27,18 @@ export const updateUser = async (req, res,next) => {
     );
     const { password, ...rest } = updatedUser._doc;
     res.status(200).json(rest);
+  } catch (error) {
+    next(error);
+  }
+};
+
+export const deleteUser = async (req, res, next) => {
+  if (req.user.id !== req.params.id)
+    return next(errorHandler(401, "You cannot Remove other accounts"));
+  try {
+    await User.findByIdAndDelete(req.user.id);
+    res.clearCookie('access_token');
+    res.status(200).json("User has been deleted!!");
   } catch (error) {
     next(error);
   }

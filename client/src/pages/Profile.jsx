@@ -10,6 +10,9 @@ import {
   updateUserStart,
   updtateUserSuccess,
   updateUserFailurre,
+  deleteUserStart,
+  deleteUserFailure,
+  deleteUserSuccess,
 } from "../redux/user/userSlice.js";
 import { app } from "../firebase.js";
 
@@ -75,9 +78,25 @@ export default function Profile() {
         return;
       }
       dispatch(updtateUserSuccess(data));
-      setUpdateSuccess(true)
+      setUpdateSuccess(true);
     } catch (error) {
       dispatch(updateUserFailurre(error.message));
+    }
+  };
+
+  const handleDeleteUser = async () => {
+    try {
+      dispatch(deleteUserStart());
+      const res = await fetch(`/api/user/delete/${currentUser._id}`, {
+        method: "DELETE", 
+      });
+      const data = await res.json();
+      if (data.success === false) {
+        dispatch(deleteUserFailure(data.message));
+      }
+      dispatch(deleteUserSuccess(data));
+    } catch (error) {
+      dispatch(deleteUserFailure(error.message));
     }
   };
 
@@ -141,7 +160,7 @@ export default function Profile() {
       </form>
       <div className="flex justify-between mt-5">
         <span
-          // onClick={handleDeleteUser}
+          onClick={handleDeleteUser}
           className="text-red-700 cursor-pointer"
         >
           Delete account
@@ -153,7 +172,9 @@ export default function Profile() {
           Sign out
         </span>
       </div>
-      <p className="text-red-700 mt-5 hover:cursor-not-allowed">{error ? error : ""}</p>
+      <p className="text-red-700 mt-5 hover:cursor-not-allowed">
+        {error ? error : ""}
+      </p>
       <p className="text-green-700 mt-5">
         {updateSuccess ? "User is updated successfully!" : ""}
       </p>
