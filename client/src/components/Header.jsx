@@ -26,20 +26,18 @@ export default function Header() {
           <Link to={"/about"}>
             <li className="hover:text-slate-50 hover:font-semibold">About</li>
           </Link>
-          <Link to={"/profile"}>
-            {currentUser ? (
-              <img
-                src={currentUser.avatar}
-                alt="profile"
-                className="rounded-full h-10 w-10 object-cover"
-              />
-            ) : (
-              <li className="hover:text-slate-50 hover:font-semibold">
-                Signin
-              </li>
-            )}
-          </Link>
         </ul>
+        <Link to={"/profile"}>
+          {currentUser ? (
+            <img
+              src={currentUser.avatar}
+              alt="profile"
+              className="rounded-full h-10 w-10 object-cover"
+            />
+          ) : (
+            <li className="hover:text-slate-50 hover:font-semibold">Signin</li>
+          )}
+        </Link>
       </div>
     </header>
   );

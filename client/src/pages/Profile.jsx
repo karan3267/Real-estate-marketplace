@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import {Link} from "react-router-dom"
 import {
   getDownloadURL,
   getStorage,
@@ -91,7 +92,7 @@ export default function Profile() {
     try {
       dispatch(deleteUserStart());
       const res = await fetch(`/api/user/delete/${currentUser._id}`, {
-        method: "DELETE", 
+        method: "DELETE",
       });
       const data = await res.json();
       if (data.success === false) {
@@ -102,19 +103,19 @@ export default function Profile() {
       dispatch(deleteUserFailure(error.message));
     }
   };
-  const handleSignOut=async ()=>{
+  const handleSignOut = async () => {
     try {
-      dispatch(signOutUserStart())
-      const res =await fetch("/api/user/signout");
-      const data= res.json()
-      if(data.success===false){
-        dispatch(signOutUserFailure(data.message))
+      dispatch(signOutUserStart());
+      const res = await fetch("/api/user/signout");
+      const data = res.json();
+      if (data.success === false) {
+        dispatch(signOutUserFailure(data.message));
       }
       dispatch(signOutUserSuccess(data));
     } catch (error) {
-      dispatch(signOutUserFailure(error))
+      dispatch(signOutUserFailure(error));
     }
-  }
+  };
 
   return (
     <div className="p-3 max-w-lg mx-auto">
@@ -173,6 +174,12 @@ export default function Profile() {
         >
           {loading ? "loading..." : "update"}
         </button>
+        <Link
+          className="bg-green-700 text-white p-3 rounded-lg uppercase text-center hover:opacity-95"
+          to={"/create-listing"}
+        >
+          Create Listing
+        </Link>
       </form>
       <div className="flex justify-between mt-5">
         <span
@@ -181,10 +188,7 @@ export default function Profile() {
         >
           Delete account
         </span>
-        <span
-          onClick={handleSignOut}
-          className="text-red-700 cursor-pointer"
-        >
+        <span onClick={handleSignOut} className="text-red-700 cursor-pointer">
           Sign out
         </span>
       </div>
