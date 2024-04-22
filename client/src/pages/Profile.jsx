@@ -153,7 +153,6 @@ export default function Profile() {
       console.log(error);
     }
   };
-  const handleEditListing = () => {};
 
   return (
     <div className="p-3 max-w-lg mx-auto">
@@ -262,11 +261,11 @@ export default function Profile() {
                   />
                 </Link>
                 <Link
-                className='text-slate-700 font-semibold  hover:underline truncate flex-1'
-                to={`/listing/${listing._id}`}
-              >
-                <p>{listing.name}</p>
-              </Link> 
+                  className="text-slate-700 font-semibold  hover:underline truncate flex-1"
+                  to={`/listing/${listing._id}`}
+                >
+                  <p>{listing.name}</p>
+                </Link>
                 <div className="flex flex-col gap-2">
                   <button
                     onClick={() => handleDeleteListing(listing._id)}
@@ -274,7 +273,9 @@ export default function Profile() {
                   >
                     delete
                   </button>
-                  <button onClick={handleEditListing}>Edit</button>
+                  <Link to={`/update-lisiting/${listing._id}`}>
+                    <button className="text-green-400">Edit</button>
+                  </Link>
                 </div>
               </div>
             ))}
