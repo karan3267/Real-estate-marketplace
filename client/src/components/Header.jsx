@@ -19,25 +19,29 @@ export default function Header() {
           />
           <FaSearch className="text-slate-600 hover:cursor-pointer" />
         </form>
-        <ul className="sm:flex items-center gap-4 hidden text-xl ">
-          <Link to={"/"}>
-            <li className="hover:text-slate-50 hover:font-semibold">Home</li>
+        <div className="flex gap-4">
+          <ul className="sm:flex items-center gap-4 hidden text-xl ">
+            <Link to={"/"}>
+              <li className="hover:text-slate-50 hover:font-semibold">Home</li>
+            </Link>
+            <Link to={"/about"}>
+              <li className="hover:text-slate-50 hover:font-semibold">About</li>
+            </Link>
+          </ul>
+          <Link to={"/profile"}>
+            {currentUser ? (
+              <img
+                src={currentUser.avatar}
+                alt="profile"
+                className="rounded-full h-10 w-10 object-cover"
+              />
+            ) : (
+              <li className="hover:text-slate-50 hover:font-semibold">
+                Signin
+              </li>
+            )}
           </Link>
-          <Link to={"/about"}>
-            <li className="hover:text-slate-50 hover:font-semibold">About</li>
-          </Link>
-        </ul>
-        <Link to={"/profile"}>
-          {currentUser ? (
-            <img
-              src={currentUser.avatar}
-              alt="profile"
-              className="rounded-full h-10 w-10 object-cover"
-            />
-          ) : (
-            <li className="hover:text-slate-50 hover:font-semibold">Signin</li>
-          )}
-        </Link>
+        </div>
       </div>
     </header>
   );

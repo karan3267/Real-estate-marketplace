@@ -43,7 +43,6 @@ export default function UpdateListing() {
         },
       });
       const data = await res.json();
-      console.log(data);
       setFormData(data);
     };
     fetchData();
