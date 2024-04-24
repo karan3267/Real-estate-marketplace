@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { Link} from "react-router-dom";
 
 export default function Contact({listing}) {
-    console.log(listing)
   const [landlord, setLandlord] = useState(null);
   const [message, setMessage] = useState("");
   const onChange = (e) => {
