@@ -26,8 +26,11 @@ export default function Header() {
     <header className="bg-slate-500 text-slate-300">
       <div className=" flex items-center justify-between mx-4 p-3">
         <Link to={"/"}>
-          <h1 className="text-xl md:text-3xl font-bold">
-            <span>Logo</span>
+          <h1 className="text-sm md:text-3xl font-bold">
+            <div className="flex max-sm:flex-wrap gap-2">
+              <span>Real Estate</span>
+              <span className="text-slate-400">Marketplace</span>
+            </div>
           </h1>
         </Link>
         <form
