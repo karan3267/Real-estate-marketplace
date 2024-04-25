@@ -1,8 +1,27 @@
 import { FaSearch } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
+import { useEffect, useState } from "react";
 export default function Header() {
   const { currentUser } = useSelector((state) => state.user);
+  const [searchTerm, setSearchTerm] = useState("");
+  const navigate = useNavigate();
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const urlParams = new URLSearchParams(window.location.search);
+    urlParams.set("searchTerm", searchTerm);
+    const searchQuery = urlParams.toString();
+    navigate(`/search?${searchQuery}`);
+  };
+
+  useEffect(() => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const searchTermFromUrl = urlParams.get("searchTerm");
+    if (searchTermFromUrl) {
+      setSearchTerm(searchTermFromUrl);
+    }
+  }, [location.search]);
   return (
     <header className="bg-slate-500 text-slate-300">
       <div className=" flex items-center justify-between mx-4 p-3">
@@ -11,13 +30,20 @@ export default function Header() {
             <span>Logo</span>
           </h1>
         </Link>
-        <form className="bg-slate-200 flex items-center justify-center rounded-lg p-3">
+        <form
+          onSubmit={handleSubmit}
+          className="bg-slate-200 flex items-center justify-center rounded-lg p-3"
+        >
           <input
             type="text"
             placeholder="search..."
-            className="bg-transparent focus:outline-none w-24 md:w-64"
+            className="bg-transparent focus:outline-none w-24 md:w-64 text-black"
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
           />
-          <FaSearch className="text-slate-600 hover:cursor-pointer" />
+          <button>
+            <FaSearch className="text-slate-600 hover:cursor-pointer" />
+          </button>
         </form>
         <div className="flex gap-4">
           <ul className="sm:flex items-center gap-4 hidden text-xl ">
