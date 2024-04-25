@@ -65,9 +65,7 @@ export default function Header() {
                 className="rounded-full h-10 w-10 object-cover"
               />
             ) : (
-              <li className="hover:text-slate-50 hover:font-semibold">
-                Signin
-              </li>
+              <p className="text-xl hover:text-slate-50 hover:font-semibold">Signin</p>
             )}
           </Link>
         </div>
