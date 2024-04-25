@@ -66,7 +66,7 @@ export default function Listing() {
               </SwiperSlide>
             ))}
           </Swiper>
-          <div className="p-3 max-w-4xl mx-auto  my-7 flex flex-col gap-4">
+          <div className="p-3 max-w-6xl mx-auto  my-7 flex flex-col gap-4">
             <p className="text-2xl font-semibold">
               {listingData.name} - ${" "}
               {listingData.offer
@@ -89,8 +89,8 @@ export default function Listing() {
                 </p>
               )}
             </div>
-            <p className="flex gap-2 text-slate-500 items-center">
-              <span className="font-semibold text-black">Description -</span>
+            <p className="flex flex-wrap gap-2 text-slate-500 items-center">
+              <span className="font-semibold text-black whitespace-nowrap">Description -</span>
               {listingData.description}
             </p>
             <ul className="text-green-900 font-semibold text-sm flex flex-wrap items-center gap-4 sm:gap-6">

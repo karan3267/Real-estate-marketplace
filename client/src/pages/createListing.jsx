@@ -65,11 +65,7 @@ export default function CreateListing() {
       const uploadTask = uploadBytesResumable(storageRef, file);
       uploadTask.on(
         "state_changed",
-        (snapShot) => {
-          const progress =
-            (snapShot.bytesTransferred / snapShot.totalBytes) * 100;
-          console.log(progress);
-        },
+        () => {},
         (error) => {
           reject(error);
         },
@@ -137,7 +133,7 @@ export default function CreateListing() {
         setError(data.message);
       }
       setLoading(false);
-      navigate(`/listing/${data._id}`)
+      navigate(`/listing/${data._id}`);
     } catch (error) {
       setError(error.message);
       setLoading(false);
@@ -234,7 +230,10 @@ export default function CreateListing() {
                 min="1"
                 max="10"
                 id="bedrooms"
+                required
                 className="p-3 border rounded-lg"
+                onChange={handleChange}
+                value={formData.bedrooms}
               />
               <p>Beds</p>
             </div>
@@ -243,8 +242,11 @@ export default function CreateListing() {
                 type="number"
                 min="1"
                 max="10"
+                required
                 id="bathrooms"
                 className="p-3 border rounded-lg"
+                onChange={handleChange}
+                value={formData.bathrooms}
               />
               <p>Baths</p>
             </div>
@@ -252,7 +254,10 @@ export default function CreateListing() {
               <input
                 type="number"
                 id="regularPrice"
+                required
                 className="p-3 border rounded-lg w-24"
+                onChange={handleChange}
+                value={formData.regularPrice}
               />
               <div className="flex flex-col items-center">
                 <p>Regular price</p>
@@ -267,6 +272,8 @@ export default function CreateListing() {
                   type="number"
                   id="discountedPrice"
                   className="p-3 border rounded-lg w-24"
+                  onChange={handleChange}
+                  value={formData.discountedPrice}
                 />
                 <div className="flex flex-col items-center">
                   <p>Discounted price</p>

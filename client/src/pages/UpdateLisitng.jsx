@@ -81,11 +81,7 @@ export default function UpdateListing() {
       const uploadTask = uploadBytesResumable(storageRef, file);
       uploadTask.on(
         "state_changed",
-        (snapShot) => {
-          const progress =
-            (snapShot.bytesTransferred / snapShot.totalBytes) * 100;
-          console.log(progress);
-        },
+        () => {},
         (error) => {
           reject(error);
         },
@@ -251,6 +247,8 @@ export default function UpdateListing() {
                 max="10"
                 id="bedrooms"
                 className="p-3 border rounded-lg"
+                onChange={handleChange}
+                value={formData.bedrooms}
               />
               <p>Beds</p>
             </div>
@@ -261,6 +259,8 @@ export default function UpdateListing() {
                 max="10"
                 id="bathrooms"
                 className="p-3 border rounded-lg"
+                onChange={handleChange}
+                value={formData.bathrooms}
               />
               <p>Baths</p>
             </div>
@@ -269,6 +269,10 @@ export default function UpdateListing() {
                 type="number"
                 id="regularPrice"
                 className="p-3 border rounded-lg w-24"
+                min="0"
+                max="1000000"
+                onChange={handleChange}
+                value={formData.regularPrice}
               />
               <div className="flex flex-col items-center">
                 <p>Regular price</p>
@@ -282,7 +286,11 @@ export default function UpdateListing() {
                 <input
                   type="number"
                   id="discountedPrice"
+                  min="0"
+                  max="1000000"
                   className="p-3 border rounded-lg w-24"
+                  onChange={handleChange}
+                  value={formData.discountedPrice}
                 />
                 <div className="flex flex-col items-center">
                   <p>Discounted price</p>
