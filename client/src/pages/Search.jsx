@@ -60,7 +60,6 @@ export default function Search() {
         setShowMore(false);
       }
       setListings(data);
-      console.log(listings);
       setLoading(false);
     };
 
