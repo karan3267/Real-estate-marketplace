@@ -54,8 +54,8 @@ export default function Home() {
           place with ease
         </h1>
         <div className="text-gray-400 text-xs sm:text-sm">
-          Real Estate Market Place is the best place to find your next perfect place to
-          live.
+          Real Estate Market Place is the best place to find your next perfect
+          place to live.
           <br />
           We have a wide range of properties for you to choose from.
         </div>
@@ -72,7 +72,7 @@ export default function Home() {
         {offerListings &&
           offerListings.length > 0 &&
           offerListings.map((listing) => (
-            <SwiperSlide key={listing}>
+            <SwiperSlide key={listing._id}>
               <div
                 style={{
                   background: `url(${listing.imageUrls[0]}) center no-repeat`,
@@ -102,8 +102,8 @@ export default function Home() {
               </Link>
             </div>
             <div className="flex flex-wrap gap-4">
-              {offerListings.map((listing) => (
-                <ListingItem listing={listing} key={listing._id} />
+              {offerListings.map((offerListing) => (
+                <ListingItem listing={offerListing} key={offerListing._id} />
               ))}
             </div>
           </div>
@@ -122,8 +122,8 @@ export default function Home() {
               </Link>
             </div>
             <div className="flex flex-wrap gap-4">
-              {rentListings.map((listing) => (
-                <ListingItem listing={listing} key={listing._id} />
+              {rentListings.map((rentListing) => (
+                <ListingItem listing={rentListing} key={rentListing._id} />
               ))}
             </div>
           </div>
@@ -142,8 +142,8 @@ export default function Home() {
               </Link>
             </div>
             <div className="flex flex-wrap gap-4">
-              {saleListings.map((listing) => (
-                <ListingItem listing={listing} key={listing._id} />
+              {saleListings.map((saleListing) => (
+                <ListingItem listing={saleListing} key={saleListing._id} />
               ))}
             </div>
           </div>
