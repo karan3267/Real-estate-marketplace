@@ -20,8 +20,8 @@ export default function Listing() {
   const params = useParams();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
-  const [contact,setContact]=useState(false)
-  const currentUser= useSelector((state)=>state.user)
+  const [contact, setContact] = useState(false);
+  const currentUser = useSelector((state) => state.user);
 
   useEffect(() => {
     const res = async () => {
@@ -90,7 +90,9 @@ export default function Listing() {
               )}
             </div>
             <p className="flex flex-wrap gap-2 text-slate-500 items-center">
-              <span className="font-semibold text-black whitespace-nowrap">Description -</span>
+              <span className="font-semibold text-black whitespace-nowrap">
+                Description -
+              </span>
               {listingData.description}
             </p>
             <ul className="text-green-900 font-semibold text-sm flex flex-wrap items-center gap-4 sm:gap-6">
@@ -115,14 +117,17 @@ export default function Listing() {
                 {listingData.furnished ? "Furnished" : "Unfurnished"}
               </li>
             </ul>
-            {currentUser && listingData.userRef !== currentUser._id && !contact && (
-              <button
-                onClick={() => setContact(true)}
-                className='bg-slate-700 text-white rounded-lg uppercase hover:opacity-95 p-3'
-              >
-                Contact landlord
-              </button>
-            )}
+            {currentUser &&
+              listingData.userRef !== currentUser._id &&
+              !contact && (
+                <button
+                  onClick={() => setContact(true)}
+                  className="bg-slate-700 text-white rounded-lg uppercase hover:opacity-95 p-3"
+                  aria-label="Contact Landlord"
+                >
+                  Contact landlord
+                </button>
+              )}
             {contact && <Contact listing={listingData} />}
           </div>
         </div>

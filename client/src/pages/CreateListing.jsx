@@ -306,6 +306,7 @@ export default function CreateListing() {
               type="button"
               onClick={handleImageSubmit}
               disabled={uploading}
+              aria-label="Upload"
             >
               {uploading ? "uploading..." : "upload"}
             </button>
@@ -328,6 +329,7 @@ export default function CreateListing() {
                   type="button"
                   className="text-red-500 hover:opacity-70"
                   onClick={() => handleDeleteImage(index)}
+                  aria-label="Delete"
                 >
                   delete
                 </button>
@@ -336,6 +338,7 @@ export default function CreateListing() {
           <button
             disabled={loading || uploading}
             className="bg-gray-700 p-3 rounded-lg text-white uppercase hover:opacity-95 disabled:opacity-80"
+            aria-label="Create Listing"
           >
             {loading ? "creating..." : "create lisitng "}
           </button>

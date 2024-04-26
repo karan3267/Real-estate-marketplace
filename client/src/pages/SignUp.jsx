@@ -1,12 +1,12 @@
 import { useState } from "react";
-import { Link,useNavigate} from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import OAuth from "../components/OAuth";
 
 export default function SignUp() {
   const [formData, setFormData] = useState({});
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
-  const navigate=useNavigate();
+  const navigate = useNavigate();
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -26,7 +26,7 @@ export default function SignUp() {
       }
       setError(null);
       setIsLoading(false);
-      navigate("/signin")
+      navigate("/signin");
     } catch (error) {
       setIsLoading(false);
       setError(error.message);
@@ -63,10 +63,13 @@ export default function SignUp() {
           id="password"
           onChange={handleChange}
         />
-        <button className="uppercase bg-slate-700 text-white rounded-lg hover:opacity-90 p-3">
+        <button
+          className="uppercase bg-slate-700 text-white rounded-lg hover:opacity-90 p-3"
+          aria-label="Singup"
+        >
           {isLoading ? "Loading..." : "Sign up"}
         </button>
-        <OAuth/>
+        <OAuth />
       </form>
       <div className="my-5">
         <div className="flex gap-3">

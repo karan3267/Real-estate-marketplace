@@ -44,7 +44,7 @@ export default function Header() {
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
           />
-          <button>
+          <button aria-label="search">
             <FaSearch className="text-slate-600 hover:cursor-pointer" />
           </button>
         </form>
@@ -65,7 +65,9 @@ export default function Header() {
                 className="rounded-full h-10 w-10 object-cover"
               />
             ) : (
-              <p className="text-xl hover:text-slate-50 hover:font-semibold">Signin</p>
+              <p className="text-xl hover:text-slate-50 hover:font-semibold">
+                Signin
+              </p>
             )}
           </Link>
         </div>

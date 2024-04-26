@@ -36,6 +36,7 @@ export default function OAuth() {
       onClick={handleClick}
       type="button"
       className="bg-red-500 rounded-lg p-3 text-white hover:bg-red-400"
+      aria-label="Google signin"
     >
       Continue with Google
     </button>

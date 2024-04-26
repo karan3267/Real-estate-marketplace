@@ -58,10 +58,13 @@ export default function SignUp() {
           id="password"
           onChange={handleChange}
         />
-        <button className="uppercase bg-slate-700 text-white rounded-lg hover:opacity-90 p-3">
+        <button
+          className="uppercase bg-slate-700 text-white rounded-lg hover:opacity-90 p-3"
+          aria-label="Signin"
+        >
           {loading ? "Loading..." : "Sign in"}
         </button>
-        <OAuth/>
+        <OAuth />
       </form>
       <div className="my-5">
         <div className="flex gap-3">

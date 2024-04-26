@@ -207,6 +207,7 @@ export default function Profile() {
         <button
           disabled={loading}
           className="uppercase bg-slate-700 text-white rounded-lg p-3 hover:opacity-95 disabled:opacity-80"
+          aria-label="update"
         >
           {loading ? "loading..." : "update"}
         </button>
@@ -237,6 +238,7 @@ export default function Profile() {
       <button
         className="bg-slate-600 p-3 rounded-lg text-white text-sm hover:opacity-80"
         onClick={handleShowListing}
+        aria-label="show your listings"
       >
         Show your Listings
       </button>
@@ -269,11 +271,14 @@ export default function Profile() {
                   <button
                     onClick={() => handleDeleteListing(listing._id)}
                     className="text-red-500"
+                    aria-label="Delete"
                   >
                     delete
                   </button>
                   <Link to={`/update-lisiting/${listing._id}`}>
-                    <button className="text-green-400">Edit</button>
+                    <button className="text-green-400" aria-label="Edit">
+                      Edit
+                    </button>
                   </Link>
                 </div>
               </div>
