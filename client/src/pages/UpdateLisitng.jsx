@@ -323,6 +323,7 @@ export default function UpdateListing() {
               type="button"
               onClick={handleImageSubmit}
               disabled={uploading}
+              aria-label="Upload"
             >
               {uploading ? "uploading..." : "upload"}
             </button>
@@ -345,6 +346,7 @@ export default function UpdateListing() {
                   type="button"
                   className="text-red-500 hover:opacity-70"
                   onClick={() => handleDeleteImage(index)}
+                  aria-label="Delete"
                 >
                   delete
                 </button>
@@ -353,6 +355,7 @@ export default function UpdateListing() {
           <button
             disabled={loading || uploading}
             className="bg-gray-700 p-3 rounded-lg text-white uppercase hover:opacity-95 disabled:opacity-80"
+            aria-label="Update Listing"
           >
             {loading ? "updating..." : "update lisitng "}
           </button>
