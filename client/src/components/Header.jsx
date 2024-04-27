@@ -24,7 +24,7 @@ export default function Header() {
   }, [location.search]);
   return (
     <header className="bg-slate-500 text-slate-300">
-      <div className=" flex items-center justify-between mx-4 p-3">
+      <div className=" flex items-center justify-between mx-4 p-3 gap-3">
         <Link to={"/"}>
           <h1 className="text-sm md:text-3xl font-bold">
             <div className="flex max-sm:flex-wrap gap-2">
@@ -48,7 +48,7 @@ export default function Header() {
             <FaSearch className="text-slate-600 hover:cursor-pointer" />
           </button>
         </form>
-        <div className="flex gap-4">
+        <div className="flex gap-4 ">
           <ul className="sm:flex items-center gap-4 hidden text-xl ">
             <Link to={"/"}>
               <li className="hover:text-slate-50 hover:font-semibold">Home</li>
